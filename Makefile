@@ -9,8 +9,8 @@ debug:
 
 setup:
 	mkdir -p ~/goinfre/uv
-	mkdir -p ~/goinfre/.venv
 	mkdir -p ~/goinfre/huggingface
+	mkdir -p ~/goinfre/venvs
 
 	mkdir -p ~/.cache
 
@@ -19,9 +19,6 @@ setup:
 
 	rm -rf ~/.cache/huggingface
 	ln -sfn ~/goinfre/huggingface ~/.cache/huggingface
-
-	rm -rf ~/.cache/.venv
-	ln -sfn ~/goinfre/.venv ~/.cache/.venv
 
 lint:
 	uv run flake8 .

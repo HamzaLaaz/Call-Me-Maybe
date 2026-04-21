@@ -1,9 +1,9 @@
 import json
 import os
 from argparse import ArgumentParser
-from .loader import load_json_file, load_vocabulary
-from .models import FunctionDefinition, Prompt, FunctionCallResult
-from .constrained import (
+from src.loader import load_json_file, load_vocabulary
+from src.models import FunctionDefinition, Prompt, FunctionCallResult
+from src.constrained import (
     build_prompt_for_function,
     build_prompt_for_argument,
     generate_function_name,

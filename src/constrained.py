@@ -8,11 +8,9 @@ def build_prompt_for_function(
     functions: List[FunctionDefinition]
 ) -> str:
     """Build the prompt for function name selection.
-
     Args:
         user_prompt: the natural language request from the user.
         functions: list of available function definitions.
-
     Returns:
         A prompt string ending with an opening quote so the LLM
         starts generating the function name immediately.
@@ -22,7 +20,8 @@ def build_prompt_for_function(
     for fn in functions:
         lines.append(f"- {fn.name}: {fn.description}")
     lines.append(f"\nUser request: {user_prompt}")
-    lines.append('\nCall the correct function.\nFunction name: "')
+    lines.append('\nCall the correct function.')
+    lines.append('\nFunction name: "')
     return "\n".join(lines)
 
 
