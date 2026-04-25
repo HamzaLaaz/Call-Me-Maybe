@@ -8,17 +8,23 @@ debug:
 	uv run python -m pdb -m src
 
 setup:
+	rm -rf .venv
+	rm -rf ~/.cache/uv
+	rm -rf ~/.cache/huggingface
+
 	mkdir -p ~/goinfre/uv
 	mkdir -p ~/goinfre/huggingface
 	mkdir -p ~/goinfre/venvs
 
 	mkdir -p ~/.cache
 
-	rm -rf ~/.cache/uv
 	ln -sfn ~/goinfre/uv ~/.cache/uv
-
-	rm -rf ~/.cache/huggingface
 	ln -sfn ~/goinfre/huggingface ~/.cache/huggingface
+
+	mkdir -p ~/goinfre/venvs/call_me_maybe
+	ln -s ~/goinfre/venvs/call_me_maybe .venv
+
+	UV_PROJECT_ENVIRONMENT=~/goinfre/venvs/call_me_maybe uv sync
 
 lint:
 	uv run flake8 .
@@ -35,3 +41,8 @@ clean:
 	rm -rf .mypy_cache
 
 .PHONY: install run debug lint clean
+
+
+# for run the moulinette:
+# 	uv run python3 -m src --functions_definition moulinette/data/input/functions_definition.json --input moulinette/data/input/function_calling_tests.json
+# 	 uv run python -m moulinette grade_student_answers ~/github_project/Call-Me-Maybe/data/output/function_calls.json --set private
