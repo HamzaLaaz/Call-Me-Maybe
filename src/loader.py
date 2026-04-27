@@ -28,10 +28,8 @@ def load_vocabulary(
         print(f"Error: Invalid vocabulary JSON: {e}",
               file=sys.stderr)
         sys.exit(1)
-
     str_to_id: dict[str, int] = {k: int(v) for k, v in raw.items()}
     id_to_str: dict[int, str] = {int(v): k for k, v in raw.items()}
-
     return id_to_str, str_to_id
 
 
@@ -57,6 +55,8 @@ def parse_a_json_file() -> Tuple[List[FunctionDefinition], List[Prompt]]:
     parser = ArgumentParser()
     parser.add_argument("--functions_definition",
                         default="data/input/functions_definition.json")
+    parser.add_argument("--module",
+                        default="Qwen/Qwen3-0.6B")
     parser.add_argument("--input",
                         default="data/input/function_calling_tests.json")
     parser.add_argument("--output",
@@ -66,4 +66,4 @@ def parse_a_json_file() -> Tuple[List[FunctionDefinition], List[Prompt]]:
     raw_prompts = load_json_file(args.input)
     functions = [FunctionDefinition(**fn) for fn in raw_functions]
     prompts = [Prompt(**p) for p in raw_prompts]
-    return functions, prompts
+    return args, functions, prompts

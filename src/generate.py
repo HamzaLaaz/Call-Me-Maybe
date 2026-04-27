@@ -74,7 +74,7 @@ def generate_function_name(
     prompt_ids: List[int],
     id_to_str: dict,
     functions: List[FunctionDefinition],
-    max_tokens: int = 50
+    # max_tokens: int = 50
 ) -> str:
     """Generate a function name using constrained decoding.
 
@@ -91,7 +91,8 @@ def generate_function_name(
     current_ids = list(prompt_ids)
     accumulated = ""
 
-    for _ in range(max_tokens):
+    # for _ in range(max_tokens):
+    while True:
         # 1 — get logits from model
         logits = model.get_logits_from_input_ids(current_ids)
         logits_np = np.array(logits)
@@ -125,7 +126,7 @@ def generate_argument_value(
     prompt_ids: List[int],
     id_to_str: dict,
     arg_type: str,
-    max_tokens: int = 100
+    # max_tokens: int = 100
 ) -> str | float | bool:
     """Generate one argument value using constrained decoding.
 
@@ -143,7 +144,8 @@ def generate_argument_value(
     accumulated = ""
     has_decimal = False
 
-    for _ in range(max_tokens):
+    # for _ in range(max_tokens):
+    while True:
         # 1 — get logits
         logits = model.get_logits_from_input_ids(current_ids)
         logits_np = np.array(logits)

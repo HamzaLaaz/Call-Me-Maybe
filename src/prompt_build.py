@@ -1,5 +1,5 @@
 from typing import List
-from .models import FunctionDefinition
+from src.models import FunctionDefinition
 
 
 def build_prompt_for_function(
