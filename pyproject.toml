@@ -1,19 +1,23 @@
 [project]
-name = "llm-sdk"
+name = "call-me-maybe"
 version = "0.1.0"
-description = "LLM SDK for local model inference"
+description = "Translate natural language into function calls..."
+readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "torch>=2.0.0",
-    "transformers>=4.40.0",
-    "huggingface-hub>=0.20.0",
-    "pydantic>=2.12.5",
+
+    "llm-sdk",
     "numpy>=2.2.6",
+    "pydantic>=2.12.5",
 ]
 
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+[tool.uv.sources]
+llm-sdk = { path = "llm_sdk", editable = true }
 
-[tool.hatch.build.targets.wheel]
-packages = ["llm_sdk"]
+
+[dependency-groups]
+dev = [
+
+    "flake8>=7.0.0",
+    "mypy==1.19.1",
+]

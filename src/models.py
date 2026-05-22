@@ -2,6 +2,11 @@ from pydantic import BaseModel
 from typing import Literal, Dict, Any
 
 
+class JsonValidationError(Exception):
+    """Raised when input JSON does not match the expected schema."""
+    pass
+
+
 class FunctionParameter(BaseModel):
     """Defines the metadata/type of a parameter in the schema."""
     type: Literal["number", "string", "boolean", "integer"]
